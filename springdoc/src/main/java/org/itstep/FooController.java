@@ -7,15 +7,13 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 @RestController
 @OpenAPIDefinition(info = @Info(title = "Foos API", version = "v1"))
 @SecurityRequirement(name = "basicAuth")
-@RequestMapping(value = "foos", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "foos")
 public class FooController {
 
     private static final int STRING_LENGTH = 6;
@@ -25,7 +23,7 @@ public class FooController {
         return new Foo(randomAlphabetic(STRING_LENGTH));
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Foo> findAll() {
         return Lists.newArrayList(new Foo(randomAlphabetic(STRING_LENGTH)), new Foo(randomAlphabetic(STRING_LENGTH)), new Foo(randomAlphabetic(STRING_LENGTH)));
     }
